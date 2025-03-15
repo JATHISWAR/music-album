@@ -18,6 +18,18 @@ export default function CollectionDetailsPage() {
   const location = useLocation();
   const { artist, type, songCount, duration, size, releasedOn } = location.state || {};
 
+  const [collections, setCollections] = useState([]);
+
+  useEffect(() => {
+    fetch('/collections/' + encodeURIComponent(name))
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setCollections(data);
+      })
+      .catch(error => console.error('Error fetching collections:', error));
+  }, []);
+
   const dummyData = [
     { song: 'Song 1', performers: 'Artist 1', duration: '3:45', size: '3 MB' },
     { song: 'Song 2', performers: 'Artist 2', duration: '4:20', size: '4 MB' },

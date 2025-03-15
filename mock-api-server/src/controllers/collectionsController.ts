@@ -62,8 +62,8 @@ export class CollectionsController {
   }
 
   public getCollectionById(req: Request, res: Response): void {
-    const collectionId = req.params.collectionId;
-    const collection = collections.find(c => c.id === collectionId);
+    const collectionId = req.params.collectionName;
+    const collection = collections.find(c => c.name === collectionId);
 
     if (collection) {
       res.status(200).json(collection);

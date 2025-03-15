@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import collectionsRoutes from './routes/collections';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4200;
 
 app.use(bodyParser.json());
 app.use('/api', collectionsRoutes);

@@ -12,6 +12,17 @@ export default function LandingPage() {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const options = ['Album', 'EP', 'Single']; 
     const navigate = useNavigate();
+    const [collections, setCollections] = useState([]);
+
+    useEffect(() => {
+      fetch('/collections')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setCollections(data);
+        })
+        .catch(error => console.error('Error fetching collections:', error));
+    }, []);
 
     const handleSelectChange = (event) => {
         setSelectedOptions(event.target.value);
