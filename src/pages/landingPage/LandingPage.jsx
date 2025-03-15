@@ -18,21 +18,21 @@ export default function LandingPage() {
     const rows = [
         { name: 'Collection 1', artist: 'Artist 1', type: 'Album', songCount: 10, duration: '40:00', size: '100MB', releasedOn: '2023-01-01' },
         { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
-        { name: 'Collection 2', artist: 'Artist 2', type: 'EP', songCount: 5, duration: '20:00', size: '50MB', releasedOn: '2023-02-01' },
+        { name: 'Collection 3', artist: 'Artist 3', type: 'Single', songCount: 1, duration: '3:30', size: '10MB', releasedOn: '2023-03-01' },
+        { name: 'Collection 4', artist: 'Artist 4', type: 'Album', songCount: 12, duration: '45:00', size: '120MB', releasedOn: '2023-04-01' },
+        { name: 'Collection 5', artist: 'Artist 5', type: 'EP', songCount: 6, duration: '25:00', size: '60MB', releasedOn: '2023-05-01' },
+        { name: 'Collection 6', artist: 'Artist 6', type: 'Single', songCount: 1, duration: '4:00', size: '12MB', releasedOn: '2023-06-01' },
+        { name: 'Collection 7', artist: 'Artist 7', type: 'Album', songCount: 9, duration: '38:00', size: '95MB', releasedOn: '2023-07-01' },
+        { name: 'Collection 8', artist: 'Artist 8', type: 'EP', songCount: 4, duration: '18:00', size: '45MB', releasedOn: '2023-08-01' },
+        { name: 'Collection 9', artist: 'Artist 9', type: 'Single', songCount: 1, duration: '3:45', size: '11MB', releasedOn: '2023-09-01' },
+        { name: 'Collection 10', artist: 'Artist 10', type: 'Album', songCount: 11, duration: '42:00', size: '110MB', releasedOn: '2023-10-01' },
+        { name: 'Collection 11', artist: 'Artist 11', type: 'EP', songCount: 7, duration: '28:00', size: '70MB', releasedOn: '2023-11-01' },
+        { name: 'Collection 12', artist: 'Artist 12', type: 'Single', songCount: 1, duration: '3:15', size: '9MB', releasedOn: '2023-12-01' },
     ];
+
+    const filteredRows = selectedOptions.length > 0
+        ? rows.filter(row => selectedOptions.includes(row.type))
+        : rows;
 
     return (
        <div className='landing-page'>
@@ -66,7 +66,8 @@ export default function LandingPage() {
                                         multiple
                                         value={selectedOptions}
                                         onChange={handleSelectChange}
-                                        renderValue={(selected) => selected.join(', ')}
+                                        sx={{fontSize: '0.75rem',color: '#0b527f',fontWeight: 'bold'}}
+                                        renderValue={(selected) => `Type(${selected.length})`}
                                         className='select'
                                     >
                                         {options.map((option) => (
@@ -90,11 +91,11 @@ export default function LandingPage() {
                                     <TableCell>Duration</TableCell>
                                     <TableCell>Size</TableCell>
                                     <TableCell>Released On</TableCell>
-                                    <TableCell></TableCell>
+                                    <TableCell>View Details</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
+                                {filteredRows.map((row) => (
                                     <TableRow key={row.name}>
                                         <TableCell>
                                             <Typography variant="h6">{row.name}</Typography>
