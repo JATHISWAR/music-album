@@ -1,0 +1,13 @@
+.header {
+    height: 68px;
+    width: 100%;
+    background-color: #ffffff; 
+    display: flex;
+}
+.title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #000000;
+    margin-left: 15px;
+    margin-top: 20px;
+}
