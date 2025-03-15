@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState,useEffect} from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import './CollectionDetailsPage.css'
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -12,7 +12,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
 export default function CollectionDetailsPage() {
   const { name } = useParams(); 
   const location = useLocation();
