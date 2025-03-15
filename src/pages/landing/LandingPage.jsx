@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import Paper from '@mui/material/Paper'
 import InputAdornment from '@mui/material/InputAdornment'
@@ -10,9 +11,23 @@ import './LandingPage.css'
 export default function LandingPage() {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const options = ['Album', 'EP', 'Single']; 
+    const navigate = useNavigate();
 
     const handleSelectChange = (event) => {
         setSelectedOptions(event.target.value);
+    };
+
+    const handleViewDetails = (row) => {
+        navigate(`/details/${encodeURIComponent(row.name)}`, {
+            state: {
+                artist: row.artist,
+                type: row.type,
+                songCount: row.songCount,
+                duration: row.duration,
+                size: row.size,
+                releasedOn: row.releasedOn
+            }
+        });
     };
 
     const rows = [
@@ -107,7 +122,7 @@ export default function LandingPage() {
                                         <TableCell>{row.size}</TableCell>
                                         <TableCell>{row.releasedOn}</TableCell>
                                         <TableCell>
-                                            <IconButton color="primary">
+                                            <IconButton color="primary" onClick={() => handleViewDetails(row)}>
                                                 <VisibilityIcon />
                                                 <span className='view-details-title'>View Details</span>
                                             </IconButton>
